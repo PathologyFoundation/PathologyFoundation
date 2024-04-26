@@ -1,5 +1,5 @@
 #from .models import PLIP_ViT
-from models import PLIP_ViT
+from .models import PLIP_ViT
 from .utils import get_default_cache_dir
 
 

@@ -94,21 +94,25 @@ class FineTuner():
             self.load_model(checkpoint)
         self.train_init()
     
-    def predict(self, image):
+    def predict(self, image, force_to_device=True):
         # image can be either PIL Image or a list of PIL Image
         x = self.preprocess(image)
         # Convert the list of NumPy arrays to a PyTorch tensor
         tensor_list = [torch.tensor(arr) for arr in x]
+        if force_to_device:
+            tensor_list = [tsr.to(device) for tsr in tensor_list]
         # Convert the list of PyTorch tensors to a single tensor
         x = torch.stack(tensor_list)
         out, _ = self.model(x)
         return out
     
-    def extract_embedding(self, image):
+    def extract_embedding(self, image, force_to_device=True):
         # image can be either PIL Image or a list of PIL Image
         x = self.preprocess(image)
         # Convert the list of NumPy arrays to a PyTorch tensor
         tensor_list = [torch.tensor(arr) for arr in x]
+        if force_to_device:
+            tensor_list = [tsr.to(device) for tsr in tensor_list]
         # Convert the list of PyTorch tensors to a single tensor
         x = torch.stack(tensor_list)
         _, embedding = self.model(x)
