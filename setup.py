@@ -15,7 +15,7 @@ setup(
         "gdown",
         "scikit-learn",
     ],
-    version = '0.2.1',  # Ideally should be same as the GitHub release tag varsion
+    version = '0.2.3',  # Ideally should be same as the GitHub release tag varsion
     description="A package of pathology foundation models.",
     long_description="Please check our github page: https://github.com/PathologyFoundation/pathologyfoundation",
     author = 'Zhi Huang',

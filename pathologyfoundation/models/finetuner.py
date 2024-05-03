@@ -100,9 +100,10 @@ class FineTuner():
         # Convert the list of NumPy arrays to a PyTorch tensor
         tensor_list = [torch.tensor(arr) for arr in x]
         if force_to_device:
-            tensor_list = [tsr.to(device) for tsr in tensor_list]
+            tensor_list = [tsr.to(self.device) for tsr in tensor_list]
         # Convert the list of PyTorch tensors to a single tensor
         x = torch.stack(tensor_list)
+        self.model.eval()
         out, _ = self.model(x)
         return out
     
@@ -112,9 +113,10 @@ class FineTuner():
         # Convert the list of NumPy arrays to a PyTorch tensor
         tensor_list = [torch.tensor(arr) for arr in x]
         if force_to_device:
-            tensor_list = [tsr.to(device) for tsr in tensor_list]
+            tensor_list = [tsr.to(self.device) for tsr in tensor_list]
         # Convert the list of PyTorch tensors to a single tensor
         x = torch.stack(tensor_list)
+        self.model.eval()
         _, embedding = self.model(x)
         return embedding
         
