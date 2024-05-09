@@ -278,5 +278,6 @@ class FineTuner():
         ckpt_classifier = OrderedDict((key.replace('classifier.', ''), value) for key, value in ckpt.items() if key.startswith('classifier.'))
         self.model.backbone.load_state_dict(ckpt_backbone)
         self.model.classifier.load_state_dict(ckpt_classifier)
+        self.model.to(self.device)
 
     
