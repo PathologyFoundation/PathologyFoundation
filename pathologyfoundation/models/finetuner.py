@@ -206,7 +206,6 @@ class FineTuner():
                     x = torch.cat(x)
                 else:
                     pass
-                x = torch.cat(x)
                 x = x.to(self.device)
                 y = y.reshape(-1).to(self.device)
                 self.model.train()
