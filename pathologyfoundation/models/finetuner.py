@@ -202,6 +202,10 @@ class FineTuner():
             tqdm_loader = tqdm(train_loader)
             for x, y in tqdm_loader:
                 tqdm_loader.set_description(f"Last Batch -- loss: {loss:.2f}")
+                if isinstance(x, list):
+                    x = torch.cat(x)
+                else:
+                    pass
                 x = torch.cat(x)
                 x = x.to(self.device)
                 y = y.reshape(-1).to(self.device)
